@@ -1,10 +1,9 @@
-const text = "Selamat Pagi ☀️";
+const text =
+"Selamat Pagi ☀️";
 
 let index = 0;
 
-/* ========================= */
-/* TYPING EFFECT */
-/* ========================= */
+/* TYPING */
 
 function typingEffect(){
 
@@ -28,9 +27,7 @@ function typingEffect(){
 
 typingEffect();
 
-/* ========================= */
 /* JAM */
-/* ========================= */
 
 function updateClock(){
 
@@ -56,35 +53,11 @@ setInterval(
 
 updateClock();
 
-/* ========================= */
 /* LOVE EFFECT */
-/* ========================= */
-
-document.addEventListener(
-"click",
-(e)=>{
-
-  spawnLove(
-    e.clientX,
-    e.clientY
-  );
-
-});
-
-document.addEventListener(
-"touchstart",
-(e)=>{
-
-  spawnLove(
-    e.touches[0].clientX,
-    e.touches[0].clientY
-  );
-
-});
 
 function spawnLove(x,y){
 
-  for(let i=0;i<12;i++){
+  for(let i=0;i<10;i++){
 
     const love =
     document.createElement("div");
@@ -100,20 +73,19 @@ function spawnLove(x,y){
     ];
 
     love.style.left =
-    x +
-    (Math.random()*80-40)
-    + "px";
+    x + "px";
 
     love.style.top =
-    y +
-    (Math.random()*40-20)
-    + "px";
+    y + "px";
 
     love.style.fontSize =
-    (
-      20 +
-      Math.random()*20
-    ) + "px";
+    (18 + Math.random()*18)
+    + "px";
+
+    love.style.setProperty(
+      "--random-x",
+      Math.random()
+    );
 
     document.body
     .appendChild(love);
@@ -128,17 +100,55 @@ function spawnLove(x,y){
 
 }
 
-/* ========================= */
 /* DEBU PERI */
-/* ========================= */
+
+function createDust(x,y){
+
+  const dust =
+  document.createElement("div");
+
+  dust.classList.add(
+    "fairy-dust"
+  );
+
+  dust.style.left =
+  x + "px";
+
+  dust.style.top =
+  y + "px";
+
+  dust.style.setProperty(
+    "--x",
+    (Math.random()*80-40)
+    + "px"
+  );
+
+  dust.style.setProperty(
+    "--y",
+    (Math.random()*100)
+    + "px"
+  );
+
+  document.body
+  .appendChild(dust);
+
+  setTimeout(()=>{
+
+    dust.remove();
+
+  },1000);
+
+}
+
+/* TOUCH HP */
 
 document.addEventListener(
-"mousemove",
+"touchstart",
 (e)=>{
 
-  createDust(
-    e.clientX,
-    e.clientY
+  spawnLove(
+    e.touches[0].clientX,
+    e.touches[0].clientY
   );
 
 });
@@ -154,53 +164,33 @@ document.addEventListener(
 
 });
 
-function createDust(x,y){
+/* PC */
 
-  for(let i=0;i<3;i++){
+document.addEventListener(
+"click",
+(e)=>{
 
-    const dust =
-    document.createElement("div");
+  spawnLove(
+    e.clientX,
+    e.clientY
+  );
 
-    dust.classList.add(
-      "fairy-dust"
-    );
+});
 
-    dust.style.left =
-    x + "px";
+document.addEventListener(
+"mousemove",
+(e)=>{
 
-    dust.style.top =
-    y + "px";
+  createDust(
+    e.clientX,
+    e.clientY
+  );
 
-    dust.style.setProperty(
-      "--x",
-      (Math.random()*120-60)
-      + "px"
-    );
+});
 
-    dust.style.setProperty(
-      "--y",
-      (Math.random()*120)
-      + "px"
-    );
+/* SPARKLE */
 
-    document.body
-    .appendChild(dust);
-
-    setTimeout(()=>{
-
-      dust.remove();
-
-    },1500);
-
-  }
-
-}
-
-/* ========================= */
-/* SPARKLE RANDOM */
-/* ========================= */
-
-for(let i=0;i<25;i++){
+for(let i=0;i<20;i++){
 
   const sparkle =
   document.createElement("div");
