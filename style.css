@@ -1,229 +1,228 @@
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Poppins,sans-serif;
-}
+const text = "Selamat Pagi ☀️";
 
-body{
-  overflow:hidden;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  position:relative;
-  background:linear-gradient(to bottom,#8fd3ff,#dff6ff);
-}
+let index = 0;
 
-.container{
-  text-align:center;
-  z-index:5;
-}
+/* ========================= */
+/* TYPING EFFECT */
+/* ========================= */
 
-.character{
-  width:320px;
-  animation:float 3s ease-in-out infinite;
-  filter:drop-shadow(0 10px 15px rgba(0,0,0,.15));
-}
+function typingEffect(){
 
-@keyframes float{
+  if(index < text.length){
 
-  0%,100%{
-    transform:translateY(0);
-  }
+    document
+    .getElementById("typing")
+    .innerHTML +=
+    text.charAt(index);
 
-  50%{
-    transform:translateY(-15px);
+    index++;
+
+    setTimeout(
+      typingEffect,
+      120
+    );
+
   }
 
 }
 
-h1{
-  margin-top:20px;
-  font-size:64px;
-  color:white;
-  animation:glow 2s infinite alternate;
-}
+typingEffect();
 
-@keyframes glow{
+/* ========================= */
+/* JAM */
+/* ========================= */
 
-  from{
-    text-shadow:0 0 10px #fff;
-  }
+function updateClock(){
 
-  to{
-    text-shadow:0 0 25px pink;
-  }
+  const now =
+  new Date();
 
-}
+  const time =
+  now.toLocaleTimeString(
+    "id-ID"
+  );
 
-p{
-  margin-top:15px;
-  font-size:22px;
-  color:#555;
-  background:rgba(255,255,255,.7);
-  padding:14px 22px;
-  border-radius:20px;
-}
-
-.clock{
-  margin-top:18px;
-  color:white;
-  font-size:20px;
-}
-
-.cloud{
-  position:absolute;
-  background:white;
-  border-radius:100px;
-  opacity:.9;
-  animation:moveCloud linear infinite;
-}
-
-.cloud::before,
-.cloud::after{
-  content:'';
-  position:absolute;
-  background:white;
-  border-radius:50%;
-}
-
-.cloud::before{
-  width:50px;
-  height:50px;
-  top:-20px;
-  left:10px;
-}
-
-.cloud::after{
-  width:70px;
-  height:70px;
-  top:-35px;
-  right:15px;
-}
-
-.cloud1{
-  width:140px;
-  height:50px;
-  top:80px;
-  left:-200px;
-  animation-duration:35s;
-}
-
-.cloud2{
-  width:180px;
-  height:60px;
-  top:180px;
-  left:-250px;
-  animation-duration:45s;
-}
-
-.cloud3{
-  width:120px;
-  height:45px;
-  top:280px;
-  left:-180px;
-  animation-duration:28s;
-}
-
-@keyframes moveCloud{
-
-  from{
-    transform:translateX(0);
-  }
-
-  to{
-    transform:translateX(1800px);
-  }
+  document
+  .getElementById("clock")
+  .innerHTML =
+  "Jam sekarang: " + time;
 
 }
 
-.grass{
-  position:absolute;
-  bottom:0;
-  width:100%;
-  height:180px;
-  background:linear-gradient(to top,#7ad66d,#a8f29f);
-  border-radius:50% 50% 0 0;
-}
+setInterval(
+  updateClock,
+  1000
+);
 
-.sparkle{
-  position:absolute;
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  background:white;
-  animation:sparkleAnim 2s infinite ease-in-out;
-}
+updateClock();
 
-@keyframes sparkleAnim{
+/* ========================= */
+/* LOVE EFFECT */
+/* ========================= */
 
-  0%,100%{
-    transform:scale(.5);
-    opacity:.2;
-  }
+document.addEventListener(
+"click",
+(e)=>{
 
-  50%{
-    transform:scale(1.5);
-    opacity:1;
+  spawnLove(
+    e.clientX,
+    e.clientY
+  );
+
+});
+
+document.addEventListener(
+"touchstart",
+(e)=>{
+
+  spawnLove(
+    e.touches[0].clientX,
+    e.touches[0].clientY
+  );
+
+});
+
+function spawnLove(x,y){
+
+  for(let i=0;i<12;i++){
+
+    const love =
+    document.createElement("div");
+
+    love.classList.add("love");
+
+    love.innerHTML =
+    ["💖","💕","💗","💓"]
+    [
+      Math.floor(
+        Math.random()*4
+      )
+    ];
+
+    love.style.left =
+    x +
+    (Math.random()*80-40)
+    + "px";
+
+    love.style.top =
+    y +
+    (Math.random()*40-20)
+    + "px";
+
+    love.style.fontSize =
+    (
+      20 +
+      Math.random()*20
+    ) + "px";
+
+    document.body
+    .appendChild(love);
+
+    setTimeout(()=>{
+
+      love.remove();
+
+    },3000);
+
   }
 
 }
 
-/* LOVE BETEBANGAN */
+/* ========================= */
+/* DEBU PERI */
+/* ========================= */
 
-.love{
-  position:absolute;
+document.addEventListener(
+"mousemove",
+(e)=>{
 
-  font-size:22px;
+  createDust(
+    e.clientX,
+    e.clientY
+  );
 
-  pointer-events:none;
+});
 
-  z-index:999;
+document.addEventListener(
+"touchmove",
+(e)=>{
 
-  animation:
-  flyLove 3s linear forwards;
+  createDust(
+    e.touches[0].clientX,
+    e.touches[0].clientY
+  );
+
+});
+
+function createDust(x,y){
+
+  for(let i=0;i<3;i++){
+
+    const dust =
+    document.createElement("div");
+
+    dust.classList.add(
+      "fairy-dust"
+    );
+
+    dust.style.left =
+    x + "px";
+
+    dust.style.top =
+    y + "px";
+
+    dust.style.setProperty(
+      "--x",
+      (Math.random()*120-60)
+      + "px"
+    );
+
+    dust.style.setProperty(
+      "--y",
+      (Math.random()*120)
+      + "px"
+    );
+
+    document.body
+    .appendChild(dust);
+
+    setTimeout(()=>{
+
+      dust.remove();
+
+    },1500);
+
+  }
+
 }
 
-@keyframes flyLove{
+/* ========================= */
+/* SPARKLE RANDOM */
+/* ========================= */
 
-  0%{
-    transform:
-    translate(0,0)
-    scale(0.8)
-    rotate(0deg);
+for(let i=0;i<25;i++){
 
-    opacity:1;
-  }
+  const sparkle =
+  document.createElement("div");
 
-  25%{
-    transform:
-    translate(-20px,-60px)
-    scale(1)
-    rotate(-15deg);
-  }
+  sparkle.classList.add(
+    "sparkle"
+  );
 
-  50%{
-    transform:
-    translate(25px,-120px)
-    scale(1.2)
-    rotate(15deg);
-  }
+  sparkle.style.left =
+  Math.random()
+  * window.innerWidth
+  + "px";
 
-  75%{
-    transform:
-    translate(-15px,-180px)
-    scale(1.4)
-    rotate(-10deg);
-  }
+  sparkle.style.top =
+  Math.random()
+  * window.innerHeight
+  + "px";
 
-  100%{
-    transform:
-    translate(20px,-260px)
-    scale(1.8)
-    rotate(20deg);
+  sparkle.style.animationDelay =
+  Math.random()*2 + "s";
 
-    opacity:0;
-  }
+  document.body
+  .appendChild(sparkle);
 
 }
