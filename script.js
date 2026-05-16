@@ -2,7 +2,9 @@ const text = "Selamat Pagi ☀️";
 
 let index = 0;
 
-/* TYPING TEXT */
+/* ========================= */
+/* TYPING EFFECT */
+/* ========================= */
 
 function typingEffect(){
 
@@ -10,7 +12,8 @@ function typingEffect(){
 
     document
     .getElementById("typing")
-    .innerHTML += text.charAt(index);
+    .innerHTML +=
+    text.charAt(index);
 
     index++;
 
@@ -25,11 +28,14 @@ function typingEffect(){
 
 typingEffect();
 
+/* ========================= */
 /* JAM */
+/* ========================= */
 
 function updateClock(){
 
-  const now = new Date();
+  const now =
+  new Date();
 
   const time =
   now.toLocaleTimeString(
@@ -50,22 +56,9 @@ setInterval(
 
 updateClock();
 
-/* LOVE SAAT KARAKTER DIKLIK */
-
-document
-.getElementById("panda")
-.addEventListener(
-"click",
-(e)=>{
-
-  spawnLove(
-    e.clientX,
-    e.clientY
-  );
-
-});
-
-/* LOVE SAAT LAYAR DIKLIK */
+/* ========================= */
+/* LOVE EFFECT */
+/* ========================= */
 
 document.addEventListener(
 "click",
@@ -77,8 +70,6 @@ document.addEventListener(
   );
 
 });
-
-/* LOVE SAAT HP DISENTUH */
 
 document.addEventListener(
 "touchstart",
@@ -90,8 +81,6 @@ document.addEventListener(
   );
 
 });
-
-/* FUNCTION LOVE */
 
 function spawnLove(x,y){
 
@@ -136,5 +125,104 @@ function spawnLove(x,y){
     },3000);
 
   }
+
+}
+
+/* ========================= */
+/* DEBU PERI */
+/* ========================= */
+
+document.addEventListener(
+"mousemove",
+(e)=>{
+
+  createDust(
+    e.clientX,
+    e.clientY
+  );
+
+});
+
+document.addEventListener(
+"touchmove",
+(e)=>{
+
+  createDust(
+    e.touches[0].clientX,
+    e.touches[0].clientY
+  );
+
+});
+
+function createDust(x,y){
+
+  for(let i=0;i<3;i++){
+
+    const dust =
+    document.createElement("div");
+
+    dust.classList.add(
+      "fairy-dust"
+    );
+
+    dust.style.left =
+    x + "px";
+
+    dust.style.top =
+    y + "px";
+
+    dust.style.setProperty(
+      "--x",
+      (Math.random()*120-60)
+      + "px"
+    );
+
+    dust.style.setProperty(
+      "--y",
+      (Math.random()*120)
+      + "px"
+    );
+
+    document.body
+    .appendChild(dust);
+
+    setTimeout(()=>{
+
+      dust.remove();
+
+    },1500);
+
+  }
+
+}
+
+/* ========================= */
+/* SPARKLE RANDOM */
+/* ========================= */
+
+for(let i=0;i<25;i++){
+
+  const sparkle =
+  document.createElement("div");
+
+  sparkle.classList.add(
+    "sparkle"
+  );
+
+  sparkle.style.left =
+  Math.random()
+  * window.innerWidth
+  + "px";
+
+  sparkle.style.top =
+  Math.random()
+  * window.innerHeight
+  + "px";
+
+  sparkle.style.animationDelay =
+  Math.random()*2 + "s";
+
+  document.body
+  .appendChild(sparkle);
 
 }
