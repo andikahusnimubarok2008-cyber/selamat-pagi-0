@@ -1,0 +1,181 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Poppins,sans-serif;
+}
+
+body{
+  overflow:hidden;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+  background:linear-gradient(to bottom,#8fd3ff,#dff6ff);
+}
+
+.container{
+  text-align:center;
+  z-index:5;
+}
+
+.character{
+  width:320px;
+  animation:float 3s ease-in-out infinite;
+  filter:drop-shadow(0 10px 15px rgba(0,0,0,.15));
+}
+
+@keyframes float{
+  0%,100%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-15px);
+  }
+}
+
+h1{
+  margin-top:20px;
+  font-size:64px;
+  color:white;
+  animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+  from{
+    text-shadow:0 0 10px #fff;
+  }
+
+  to{
+    text-shadow:0 0 25px pink;
+  }
+}
+
+p{
+  margin-top:15px;
+  font-size:22px;
+  color:#555;
+  background:rgba(255,255,255,.7);
+  padding:14px 22px;
+  border-radius:20px;
+}
+
+.clock{
+  margin-top:18px;
+  color:white;
+  font-size:20px;
+}
+
+.cloud{
+  position:absolute;
+  background:white;
+  border-radius:100px;
+  opacity:.9;
+  animation:moveCloud linear infinite;
+}
+
+.cloud::before,
+.cloud::after{
+  content:'';
+  position:absolute;
+  background:white;
+  border-radius:50%;
+}
+
+.cloud::before{
+  width:50px;
+  height:50px;
+  top:-20px;
+  left:10px;
+}
+
+.cloud::after{
+  width:70px;
+  height:70px;
+  top:-35px;
+  right:15px;
+}
+
+.cloud1{
+  width:140px;
+  height:50px;
+  top:80px;
+  left:-200px;
+  animation-duration:35s;
+}
+
+.cloud2{
+  width:180px;
+  height:60px;
+  top:180px;
+  left:-250px;
+  animation-duration:45s;
+}
+
+.cloud3{
+  width:120px;
+  height:45px;
+  top:280px;
+  left:-180px;
+  animation-duration:28s;
+}
+
+@keyframes moveCloud{
+  from{
+    transform:translateX(0);
+  }
+
+  to{
+    transform:translateX(1800px);
+  }
+}
+
+.grass{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:180px;
+  background:linear-gradient(to top,#7ad66d,#a8f29f);
+  border-radius:50% 50% 0 0;
+}
+
+.sparkle{
+  position:absolute;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:white;
+  animation:sparkleAnim 2s infinite ease-in-out;
+}
+
+@keyframes sparkleAnim{
+  0%,100%{
+    transform:scale(.5);
+    opacity:.2;
+  }
+
+  50%{
+    transform:scale(1.5);
+    opacity:1;
+  }
+}
+
+.heart{
+  position:absolute;
+  font-size:24px;
+  animation:fly 4s linear forwards;
+}
+
+@keyframes fly{
+  0%{
+    transform:translateY(0) scale(1);
+    opacity:1;
+  }
+
+  100%{
+    transform:translateY(-250px) scale(1.8);
+    opacity:0;
+  }
+}
